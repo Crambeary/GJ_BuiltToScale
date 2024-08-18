@@ -499,9 +499,9 @@ sources/0 = SubResource("TileSetAtlasSource_arcya")
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o1a8x")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_jchem")]
+[node name="Player" parent="." instance=ExtResource("1_jchem")]
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
@@ -532,18 +532,19 @@ color = Color(0.62, 0.55056, 0.5208, 0.282353)
 [node name="Pickups" type="Node2D" parent="."]
 
 [node name="Pickup" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(106, -15)
 
 [node name="Pickup2" parent="Pickups" instance=ExtResource("4_70d32")]
-position = Vector2(57, -35)
+position = Vector2(163, -50)
 
 [node name="Pickup3" parent="Pickups" instance=ExtResource("4_70d32")]
-position = Vector2(121, -61)
+position = Vector2(227, -76)
 
 [node name="Pickup4" parent="Pickups" instance=ExtResource("4_70d32")]
-position = Vector2(126, -117)
+position = Vector2(232, -132)
 
 [node name="Pickup5" parent="Pickups" instance=ExtResource("4_70d32")]
-position = Vector2(121, -172)
+position = Vector2(227, -187)
 
 [connection signal="pickup" from="Pickups/Pickup" to="." method="_on_pickup_pickup"]
 

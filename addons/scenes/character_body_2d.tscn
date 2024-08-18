@@ -1,15 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dthpn1kee4uab"]
+[gd_scene load_steps=2 format=3 uid="uid://dthpn1kee4uab"]
 
 [ext_resource type="Script" path="res://addons/scripts/character_body_2d.gd" id="1_wxxny"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w1l85"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_wxxny")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_w1l85")
-
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0, 1, 1, 1)
 polygon = PackedVector2Array(0, -15, -9, -10, -9, 9, 0, 13, 9, 9, 9, -10)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="PickupMarkers" type="Node2D" parent="."]
+
+[node name="Marker 1" type="Polygon2D" parent="PickupMarkers"]
+visible = false
+color = Color(0.4452, 0.7, 0.406, 1)
+polygon = PackedVector2Array(-9, 6, -6, 7, -6, 5, -9, 4)
+
+[node name="Marker 2" type="Polygon2D" parent="PickupMarkers"]
+visible = false
+position = Vector2(0, -4)
+color = Color(0.4452, 0.7, 0.406, 1)
+polygon = PackedVector2Array(-9, 6, -6, 7, -6, 5, -9, 4)
+
+[node name="Marker 3" type="Polygon2D" parent="PickupMarkers"]
+visible = false
+position = Vector2(0, -8)
+color = Color(0.4452, 0.7, 0.406, 1)
+polygon = PackedVector2Array(-9, 6, -6, 7, -6, 5, -9, 4)

@@ -16,10 +16,6 @@ run/main_scene="res://addons/scenes/Level.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
-[global_group]
-
-player=""
-
 [input]
 
 Up={
