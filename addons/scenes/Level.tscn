@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=9 format=4 uid="uid://bdkoetuso5mtb"]
 
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
+[ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
 [ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="2_22x47"]
 [ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="3_djpq1"]
 [ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="4_70d32"]
+[ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arcya"]
 texture = ExtResource("2_22x47")
@@ -495,6 +497,7 @@ terrain_set_0/terrain_1/color = Color(0.1936, 0.44, 0.320907, 1)
 sources/0 = SubResource("TileSetAtlasSource_arcya")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_o1a8x")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_jchem")]
 
@@ -515,4 +518,33 @@ polygon = PackedVector2Array(-136, -63, -140, 6, 10, 82, 171, 15, 275, 86, 195, 
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacle"]
 
-[node name="Pickup" parent="." instance=ExtResource("4_70d32")]
+[node name="GoalBlock" parent="." instance=ExtResource("5_8tecf")]
+position = Vector2(-28, -180)
+
+[node name="GoalBlock2" parent="." instance=ExtResource("5_8tecf")]
+position = Vector2(-28, -180)
+scale = Vector2(3.5, 3.5)
+
+[node name="Polygon2D" parent="GoalBlock2" index="0"]
+scale = Vector2(0.991061, 1)
+color = Color(0.62, 0.55056, 0.5208, 0.282353)
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Pickups" instance=ExtResource("4_70d32")]
+
+[node name="Pickup2" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(57, -35)
+
+[node name="Pickup3" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(121, -61)
+
+[node name="Pickup4" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(126, -117)
+
+[node name="Pickup5" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(121, -172)
+
+[connection signal="pickup" from="Pickups/Pickup" to="." method="_on_pickup_pickup"]
+
+[editable path="GoalBlock2"]

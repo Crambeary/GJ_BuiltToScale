@@ -1,8 +1,7 @@
-extends Area2D
+extends StaticBody2D
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 
-signal pickup
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,10 +12,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		pickup.emit()
-		queue_free()
-	
