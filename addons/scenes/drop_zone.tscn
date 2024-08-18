@@ -6,7 +6,7 @@
 script = ExtResource("1_appxc")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.56, 0.56, 0.2744, 1)
+color = Color(0.5, 0.5, 0.245, 1)
 polygon = PackedVector2Array(-65, -79, -64, -46, 33, -47, 33, -83)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

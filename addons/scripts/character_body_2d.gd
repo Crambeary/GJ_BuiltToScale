@@ -7,7 +7,15 @@ extends CharacterBody2D
 const SPEED := 300.0
 var markers_held := 0
 
+var pickup_limit := 1
+
 var marker_nodes: Array
+
+func get_pickup_limit() -> int:
+	return pickup_limit
+	
+func set_pickup_limit(value: int):
+	pickup_limit = value
 
 func pickup_material():
 	markers_held += 1
