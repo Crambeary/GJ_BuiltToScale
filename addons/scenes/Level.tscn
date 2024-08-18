@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=11 format=4 uid="uid://bdkoetuso5mtb"]
 
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
 [ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="4_70d32"]
 [ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
 [ext_resource type="PackedScene" uid="uid://bek31hv4snpor" path="res://addons/scenes/drop_zone.tscn" id="7_mkw7u"]
+[ext_resource type="PackedScene" uid="uid://cteq0wga6usqa" path="res://addons/scenes/pause.tscn" id="8_r5jiq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arcya"]
 texture = ExtResource("2_22x47")
@@ -558,6 +559,9 @@ position = Vector2(-60, 2)
 [node name="Timer" type="Timer" parent="."]
 
 [node name="drop zones" type="Node2D" parent="."]
+
+[node name="Pause" parent="." instance=ExtResource("8_r5jiq")]
+visible = false
 
 [connection signal="player_in_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_in_drop_zone"]
 [connection signal="player_left_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_left_drop_zone"]

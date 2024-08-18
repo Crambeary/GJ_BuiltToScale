@@ -22,8 +22,20 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#func _process(delta: float) -> void:
+	#
+	#if Input.is_action_just_pressed("pause"):
+		#get_viewport().set_input_as_handled()
+		#if get_tree().paused == false:
+			#get_tree().paused = true
+			#$PauseMenu.visible = true
+	
+func _input(event: InputEvent):
+	if(event.is_action_pressed("pause")):
+		get_viewport().set_input_as_handled()
+		if get_tree().paused == false:
+			get_tree().paused = true
+			$Pause.visible = true
 
 func check_goal_size():
 	if (goal_block.scale >= Vector2(3.4, 3.4)):
