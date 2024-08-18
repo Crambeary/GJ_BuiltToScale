@@ -3,6 +3,7 @@ extends Node2D
 @onready var goal_block: StaticBody2D = $GoalBlock
 @onready var pickups: Node2D = $Pickups
 @onready var player: CharacterBody2D = $Player
+@onready var timer: Timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,10 +27,26 @@ func _on_pickup_pickup() -> void:
 func _on_drop_zone_player_in_drop_zone() -> void:
 	var player_materials_count = player.get_material_count()
 	if player_materials_count >= 1:
-		submit_material()
+		timer.start()
 		
 
 func submit_material():
 	player.submit_material()
 	goal_block.scale = goal_block.scale + Vector2(0.5, 0.5)
 	check_goal_size()
+	var player_materials_count = player.get_material_count()
+	if player_materials_count == 0:
+		timer.stop()
+	
+func stop_submitting_material():
+	timer.stop()
+
+
+
+func _on_drop_zone_player_left_drop_zone() -> void:
+	stop_submitting_material()
+
+
+
+func _on_timer_timeout() -> void:
+	submit_material()

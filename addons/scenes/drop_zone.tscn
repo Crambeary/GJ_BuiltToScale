@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bek31hv4snpor"]
+
+[ext_resource type="Script" path="res://addons/scripts/drop_zone.gd" id="1_appxc"]
+
+[node name="Drop Zone" type="Area2D"]
+script = ExtResource("1_appxc")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.56, 0.56, 0.2744, 1)
+polygon = PackedVector2Array(-65, -79, -64, -46, 33, -47, 33, -83)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
