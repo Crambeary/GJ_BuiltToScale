@@ -11,13 +11,13 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		player_in_drop_zone.emit()
+		player_in_drop_zone.emit(self)
 		#polygon_2d.modulate.v = 100
 		polygon_2d.set_color(Color.html("c2c25f"))
 		
 		
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		player_left_drop_zone.emit()
+		player_left_drop_zone.emit(self)
 		#polygon_2d.modulate.v = 50
 		polygon_2d.set_color(Color.html("80803e"))
