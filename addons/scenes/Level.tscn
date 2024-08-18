@@ -548,6 +548,7 @@ position = Vector2(232, -132)
 position = Vector2(227, -187)
 
 [node name="Drop Zone" parent="." instance=ExtResource("7_mkw7u")]
+z_index = -1
 
 [node name="Timer" type="Timer" parent="."]
 

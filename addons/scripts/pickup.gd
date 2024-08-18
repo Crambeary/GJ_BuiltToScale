@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		pickup.emit()
-		queue_free()
+		if body.get_material_count() < 3:
+			pickup.emit()
+			queue_free()
 	
