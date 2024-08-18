@@ -11,6 +11,13 @@ var marker_nodes: Array
 
 func pickup_material():
 	markers_held += 1
+	
+func get_material_count():
+	return markers_held
+	
+func submit_material():
+	if markers_held >= 1:
+		markers_held -= 1
 
 func _ready() -> void:
 	collision_polygon_2d.polygon = polygon_2d.polygon
@@ -37,8 +44,11 @@ func _process(delta: float) -> void:
 				node.visible = false
 		1: 
 			marker_nodes[0].visible = true
+			marker_nodes[1].visible = false
+			marker_nodes[2].visible = false
 		2:
 			marker_nodes[1].visible = true
+			marker_nodes[2].visible = false
 		3:
 			marker_nodes[2].visible = true
 		_:

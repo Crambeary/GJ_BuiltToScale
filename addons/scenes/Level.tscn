@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=10 format=4 uid="uid://bdkoetuso5mtb"]
 
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
 [ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="3_djpq1"]
 [ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="4_70d32"]
 [ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
+[ext_resource type="Script" path="res://addons/scripts/drop_zone.gd" id="7_1pkhs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arcya"]
 texture = ExtResource("2_22x47")
@@ -546,6 +547,17 @@ position = Vector2(232, -132)
 [node name="Pickup5" parent="Pickups" instance=ExtResource("4_70d32")]
 position = Vector2(227, -187)
 
+[node name="Drop Zone" type="Area2D" parent="."]
+script = ExtResource("7_1pkhs")
+
+[node name="Polygon2D" type="Polygon2D" parent="Drop Zone"]
+color = Color(0.56, 0.56, 0.2744, 1)
+polygon = PackedVector2Array(-65, -79, -64, -46, 33, -47, 33, -83)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Drop Zone"]
+
 [connection signal="pickup" from="Pickups/Pickup" to="." method="_on_pickup_pickup"]
+[connection signal="body_entered" from="Drop Zone" to="Drop Zone" method="_on_body_entered"]
+[connection signal="player_in_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_in_drop_zone"]
 
 [editable path="GoalBlock2"]

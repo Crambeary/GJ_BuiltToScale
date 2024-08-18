@@ -21,6 +21,15 @@ func check_goal_size():
 		get_tree().reload_current_scene()
 
 func _on_pickup_pickup() -> void:
+	player.pickup_material()
+
+func _on_drop_zone_player_in_drop_zone() -> void:
+	var player_materials_count = player.get_material_count()
+	if player_materials_count >= 1:
+		submit_material()
+		
+
+func submit_material():
+	player.submit_material()
 	goal_block.scale = goal_block.scale + Vector2(0.5, 0.5)
 	check_goal_size()
-	player.pickup_material()
