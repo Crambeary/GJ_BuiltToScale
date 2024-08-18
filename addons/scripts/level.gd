@@ -36,6 +36,7 @@ func _on_drop_zone_player_in_drop_zone(area) -> void:
 	drop_area = "up" if area.is_in_group("up") else "down"
 	var player_materials_count = player.get_material_count()
 	if player_materials_count >= 1:
+		player.start_transfer_ui()
 		timer.start()
 		
 
@@ -52,6 +53,7 @@ func submit_material():
 		timer.stop()
 	
 func stop_submitting_material():
+	player.stop_transfer_ui()
 	timer.stop()
 
 

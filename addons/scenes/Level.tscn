@@ -559,7 +559,6 @@ position = Vector2(-60, 2)
 
 [node name="drop zones" type="Node2D" parent="."]
 
-[connection signal="pickup" from="Pickups/Pickup" to="." method="_on_pickup_pickup"]
 [connection signal="player_in_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_in_drop_zone"]
 [connection signal="player_left_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_left_drop_zone"]
 [connection signal="player_in_drop_zone" from="Drop Zone2" to="." method="_on_drop_zone_player_in_drop_zone"]

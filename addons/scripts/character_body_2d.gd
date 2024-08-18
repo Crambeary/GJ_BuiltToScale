@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 @onready var pickup_markers: Node2D = $PickupMarkers
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 const SPEED := 300.0
@@ -61,3 +62,9 @@ func _process(delta: float) -> void:
 			marker_nodes[2].visible = true
 		_:
 			pass
+
+func start_transfer_ui():
+	animation_player.play(&"Transfer")
+	
+func stop_transfer_ui():
+	animation_player.stop()
