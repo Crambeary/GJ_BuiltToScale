@@ -41,6 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 		polygon_2d.set_color(Color.html("007d92"))
 		sprite_2d.visible = false
 		extraction_timer.start()
+		material_count_label.visible = false
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -48,6 +49,7 @@ func _on_body_exited(body: Node2D) -> void:
 		polygon_2d.set_color(Color.html("a8eeff"))
 		sprite_2d.visible = true
 		extraction_timer.stop()
+		material_count_label.visible = true
 
 
 func _on_extraction_timer_timeout() -> void:
