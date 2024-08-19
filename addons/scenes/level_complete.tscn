@@ -100,4 +100,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "NEXT LEVEL"
 
+[node name="RestartLevel" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Restart Level"
+
+[node name="Exit Game" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
 [connection signal="button_down" from="Control/VBoxContainer/NextLevel" to="." method="_on_next_level_button_down"]
+[connection signal="pressed" from="Control/VBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]

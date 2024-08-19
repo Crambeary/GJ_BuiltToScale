@@ -62,6 +62,7 @@ func _on_drop_zone_player_in_drop_zone(area) -> void:
 func submit_material():
 	player.submit_material()
 	collected_matter += 1
+	extraction_zone.set_collected_material(collected_matter)
 	goal_block.scale = goal_block.scale + Vector2(0.5, 0.5)
 	if drop_area == "up":
 		obstacle.scale += Vector2(0.1, 0.1)
