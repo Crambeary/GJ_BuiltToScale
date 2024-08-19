@@ -4,10 +4,11 @@ extends Node2D
 @onready var pickups: Node2D = $Pickups
 @onready var player: CharacterBody2D = $Player
 @onready var timer: Timer = $Timer
-@onready var obstacle: StaticBody2D = $Obstacle
+@onready var obstacle: StaticBody2D = $Walls
 @onready var drop_zones: Node2D = $"drop zones"
 @onready var transfer_sfx: AudioStreamPlayer = $TransferSFX
 @onready var level_complete_overlay: CanvasLayer = $LevelComplete
+@onready var extraction_zone: Area2D = $ExtractionZone
 
 
 var drop_area := ""
@@ -40,7 +41,7 @@ func check_collection_count():
 	
 func check_goal_collection():
 	if (check_collection_count() >= 3):
-		level_complete()
+		extraction_zone.remove_cross()
 
 func level_complete():
 	level_complete_overlay.visible = true
@@ -87,3 +88,12 @@ func _on_drop_zone_player_left_drop_zone(area) -> void:
 
 func _on_timer_timeout() -> void:
 	submit_material()
+
+
+func _on_extraction_zone_extraction_timer_end() -> void:
+	level_complete()
+
+
+
+func _on_level_complete_next_level() -> void:
+	get_tree().change_scene_to_file("res://addons/scenes/Level_2.tscn")

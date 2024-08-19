@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal next_level
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,4 +17,6 @@ func go_to_main_menu():
 	get_tree().change_scene_to_file("res://addons/scenes/main_menu.tscn")
 
 func _on_next_level_button_down() -> void:
-	go_to_main_menu()
+	get_tree().paused = false
+	next_level.emit()
+	#go_to_main_menu()

@@ -3,5 +3,6 @@
 [ext_resource type="AudioStream" uid="uid://b6mb13f6sx5rk" path="res://addons/sounds/DOS-88 - Far away.mp3" id="1_vhk6k"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_vhk6k")
 autoplay = true

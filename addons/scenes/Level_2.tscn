@@ -1,19 +1,19 @@
-[gd_scene load_steps=14 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=14 format=4 uid="uid://dla32rlus6lni"]
 
-[ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
-[ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
-[ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="2_22x47"]
-[ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="3_djpq1"]
-[ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="4_70d32"]
-[ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
-[ext_resource type="PackedScene" uid="uid://bek31hv4snpor" path="res://addons/scenes/drop_zone.tscn" id="7_mkw7u"]
-[ext_resource type="PackedScene" uid="uid://cteq0wga6usqa" path="res://addons/scenes/pause.tscn" id="8_r5jiq"]
-[ext_resource type="AudioStream" uid="uid://ys1rii27fanc" path="res://addons/sounds/transfer.wav" id="9_pg2o7"]
-[ext_resource type="PackedScene" uid="uid://nqigkltiytwg" path="res://addons/scenes/level_complete.tscn" id="10_corpq"]
-[ext_resource type="PackedScene" uid="uid://ckc15lcgy8ow6" path="res://addons/scenes/extraction_zone.tscn" id="11_4q7ln"]
+[ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_uygi1"]
+[ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="2_is8ho"]
+[ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="3_4716h"]
+[ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="4_co0vp"]
+[ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_a82n0"]
+[ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="6_l06i0"]
+[ext_resource type="PackedScene" uid="uid://bek31hv4snpor" path="res://addons/scenes/drop_zone.tscn" id="7_uhim4"]
+[ext_resource type="PackedScene" uid="uid://cteq0wga6usqa" path="res://addons/scenes/pause.tscn" id="8_4t5kh"]
+[ext_resource type="AudioStream" uid="uid://ys1rii27fanc" path="res://addons/sounds/transfer.wav" id="9_4jmpr"]
+[ext_resource type="PackedScene" uid="uid://nqigkltiytwg" path="res://addons/scenes/level_complete.tscn" id="10_u7a65"]
+[ext_resource type="PackedScene" uid="uid://ckc15lcgy8ow6" path="res://addons/scenes/extraction_zone.tscn" id="11_rmu4s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arcya"]
-texture = ExtResource("2_22x47")
+texture = ExtResource("3_4716h")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -502,9 +502,9 @@ terrain_set_0/terrain_1/color = Color(0.1936, 0.44, 0.320907, 1)
 sources/0 = SubResource("TileSetAtlasSource_arcya")
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_o1a8x")
+script = ExtResource("1_uygi1")
 
-[node name="Player" parent="." instance=ExtResource("1_jchem")]
+[node name="Player" parent="." instance=ExtResource("2_is8ho")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
@@ -518,17 +518,44 @@ tile_set = SubResource("TileSet_aop3n")
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="Obstacle" type="StaticBody2D" parent="Walls"]
-script = ExtResource("3_djpq1")
+script = ExtResource("4_co0vp")
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle"]
-polygon = PackedVector2Array(-136, -63, -140, 6, 10, 82, 171, 15, 352, -62, 372, 33, 246, 159, -77, 160, -69.5092, 347.271, 339, 343, 452, 133, 724, -101, 757, -79, 627.756, 142.831, 891, 161, 911, -208, 982, -225, 971, 250, 482, 393, -372, 391, -366, 160, -363, -197, -359, -412, -203, -714, 973, -712, 1112, -711, 972, -188, 909, -159, 975, -658, -152.983, -611.965, -53, -408, 340.137, -396.644, 334, -532, 493, -530, 489.292, -443.136, 860, -421, 864, -357, 486, -366, 416, -334, -131, -312)
+polygon = PackedVector2Array(-47, -512, -42, -389, -236, -392, -231, 87, -24, 80, -19, 215, -320, 228, -323, 167, -104, 164, -104, 128, -334, 130, -350, -453, -122, -442, -127, -562, -45, -571)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle"]
 
-[node name="GoalBlock" parent="." instance=ExtResource("5_8tecf")]
+[node name="Obstacle2" type="StaticBody2D" parent="Walls"]
+script = ExtResource("4_co0vp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle2"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(62, -572, 62, -398, 309, -410, 322, 94, 126, 82, 127, 203, 600, 189, 591, 115, 418, 144, 382, -497, 152, -494, 174, -597)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle2"]
+
+[node name="Obstacle3" type="StaticBody2D" parent="Walls"]
+script = ExtResource("4_co0vp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle3"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-569, -682, 826, -705, 838, 302, -539, 329, -637, 430, 1042, 393, 965, -810, -767, -789, -639, 430, -539, 327)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle3"]
+
+[node name="Obstacle4" type="StaticBody2D" parent="Walls"]
+script = ExtResource("4_co0vp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle4"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(560, -359, 576, 18, 685, 18, 682, 191, 780, 191, 772, -81, 644, -81, 609, -603, 407, -596, 404, -518, 559, -527)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle4"]
+
+[node name="GoalBlock" parent="." instance=ExtResource("5_a82n0")]
 position = Vector2(-28, -180)
 
-[node name="GoalBlock2" parent="." instance=ExtResource("5_8tecf")]
+[node name="GoalBlock2" parent="." instance=ExtResource("5_a82n0")]
 position = Vector2(-28, -180)
 scale = Vector2(3.5, 3.5)
 
@@ -538,43 +565,43 @@ color = Color(0.62, 0.55056, 0.5208, 0.282353)
 
 [node name="Pickups" type="Node2D" parent="."]
 
-[node name="Pickup" parent="Pickups" instance=ExtResource("4_70d32")]
-position = Vector2(397, -178)
+[node name="Pickup" parent="Pickups" instance=ExtResource("6_l06i0")]
+position = Vector2(-312, 148)
 
-[node name="Pickup2" parent="Pickups" instance=ExtResource("4_70d32")]
+[node name="Pickup2" parent="Pickups" instance=ExtResource("6_l06i0")]
 position = Vector2(503, -407)
 
-[node name="Pickup3" parent="Pickups" instance=ExtResource("4_70d32")]
+[node name="Pickup3" parent="Pickups" instance=ExtResource("6_l06i0")]
 position = Vector2(80, 254)
 
-[node name="Pickup4" parent="Pickups" instance=ExtResource("4_70d32")]
-position = Vector2(183, -473)
+[node name="Pickup4" parent="Pickups" instance=ExtResource("6_l06i0")]
+position = Vector2(359, -179)
 
-[node name="Pickup5" parent="Pickups" instance=ExtResource("4_70d32")]
+[node name="Pickup5" parent="Pickups" instance=ExtResource("6_l06i0")]
 position = Vector2(732, 68)
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="drop zones" type="Node2D" parent="."]
 
-[node name="Drop Zone" parent="drop zones" groups=["up"] instance=ExtResource("7_mkw7u")]
+[node name="Drop Zone" parent="drop zones" groups=["up"] instance=ExtResource("7_uhim4")]
 z_index = -1
 position = Vector2(71, -2)
 
-[node name="Drop Zone2" parent="drop zones" groups=["down"] instance=ExtResource("7_mkw7u")]
+[node name="Drop Zone2" parent="drop zones" groups=["down"] instance=ExtResource("7_uhim4")]
 z_index = -1
 position = Vector2(-60, 2)
 
-[node name="Pause" parent="." instance=ExtResource("8_r5jiq")]
+[node name="Pause" parent="." instance=ExtResource("8_4t5kh")]
 visible = false
 
 [node name="TransferSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_pg2o7")
+stream = ExtResource("9_4jmpr")
 
-[node name="LevelComplete" parent="." instance=ExtResource("10_corpq")]
+[node name="LevelComplete" parent="." instance=ExtResource("10_u7a65")]
 visible = false
 
-[node name="ExtractionZone" parent="." instance=ExtResource("11_4q7ln")]
+[node name="ExtractionZone" parent="." instance=ExtResource("11_rmu4s")]
 position = Vector2(169, -231)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
@@ -582,7 +609,6 @@ position = Vector2(169, -231)
 [connection signal="player_left_drop_zone" from="drop zones/Drop Zone" to="." method="_on_drop_zone_player_left_drop_zone"]
 [connection signal="player_in_drop_zone" from="drop zones/Drop Zone2" to="." method="_on_drop_zone_player_in_drop_zone"]
 [connection signal="player_left_drop_zone" from="drop zones/Drop Zone2" to="." method="_on_drop_zone_player_left_drop_zone"]
-[connection signal="next_level" from="LevelComplete" to="." method="_on_level_complete_next_level"]
 [connection signal="extraction_timer_end" from="ExtractionZone" to="." method="_on_extraction_zone_extraction_timer_end"]
 
 [editable path="GoalBlock2"]
