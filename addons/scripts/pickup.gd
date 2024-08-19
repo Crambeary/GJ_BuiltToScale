@@ -1,6 +1,7 @@
 extends Area2D
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
+@onready var pickup_sfx: AudioStreamPlayer = $PickupSFX
 
 signal pickup
 
@@ -20,5 +21,11 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		if body.get_material_count() < body.get_pickup_limit():
 			pickup.emit()
-			queue_free()
+			visible = false
+			pickup_sfx.play()
+			
 	
+
+
+func _on_pickup_sfx_finished() -> void:
+	queue_free()

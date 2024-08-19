@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://coosbtv7tqexb"]
+[gd_scene load_steps=4 format=3 uid="uid://coosbtv7tqexb"]
 
 [ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_68qa7"]
+[ext_resource type="AudioStream" uid="uid://bw32kawp3ku45" path="res://addons/sounds/select.wav" id="2_0qsf8"]
+[ext_resource type="AudioStream" uid="uid://bt7b1p486r2tw" path="res://addons/sounds/hover.wav" id="3_n3tnk"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_68qa7")
@@ -39,11 +41,19 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
-text = "Matter Max"
+text = "Max Matter"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "START"
 
+[node name="ClickSFX" type="AudioStreamPlayer" parent="Control/VBoxContainer/Button"]
+stream = ExtResource("2_0qsf8")
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="Control/VBoxContainer/Button"]
+stream = ExtResource("3_n3tnk")
+
 [connection signal="button_down" from="Control/VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Control/VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="finished" from="Control/VBoxContainer/Button/ClickSFX" to="." method="_on_audio_stream_player_finished"]

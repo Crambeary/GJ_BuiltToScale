@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://nqigkltiytwg"]
+
+[ext_resource type="Script" path="res://addons/scripts/level_complete.gd" id="1_3kgvo"]
+[ext_resource type="Texture2D" uid="uid://d0p0us7h0dnm6" path="res://addons/sprites/Icon_Star.png" id="2_4aild"]
+[ext_resource type="Texture2D" uid="uid://cb3ph3lk5dipd" path="res://addons/sprites/Icon_Star_Empty.png" id="3_357lc"]
+
+[node name="LevelComplete" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_3kgvo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.462745)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level Complete" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "LEVEL 
+COMPLETE"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Star1" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("2_4aild")
+expand_mode = 2
+
+[node name="Star2" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("2_4aild")
+expand_mode = 2
+
+[node name="Star3" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("2_4aild")
+expand_mode = 2
+
+[node name="StarEmpty1" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("3_357lc")
+expand_mode = 2
+
+[node name="StarEmpty2" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("3_357lc")
+expand_mode = 2
+
+[node name="StarEmpty3" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("3_357lc")
+expand_mode = 2
+
+[node name="Score" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "SCORE: 0"
+horizontal_alignment = 1
+
+[node name="NextLevel" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "NEXT LEVEL"
+
+[connection signal="button_down" from="Control/VBoxContainer/NextLevel" to="." method="_on_next_level_button_down"]

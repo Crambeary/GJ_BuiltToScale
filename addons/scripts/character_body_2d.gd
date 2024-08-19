@@ -4,12 +4,10 @@ extends CharacterBody2D
 @onready var pickup_markers: Node2D = $PickupMarkers
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+const SPEED := 300.
 
-const SPEED := 300.0
 var markers_held := 0
-
-var pickup_limit := 1
-
+var pickup_limit := 3
 var marker_nodes: Array
 
 func get_pickup_limit() -> int:

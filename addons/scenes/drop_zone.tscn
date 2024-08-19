@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bek31hv4snpor"]
+[gd_scene load_steps=4 format=3 uid="uid://bek31hv4snpor"]
 
 [ext_resource type="Script" path="res://addons/scripts/drop_zone.gd" id="1_appxc"]
+[ext_resource type="Texture2D" uid="uid://dgkhia6vktgur" path="res://addons/sprites/Icon_ArrowUp.png" id="2_u7yuo"]
+[ext_resource type="Texture2D" uid="uid://bmucm6fo7xye" path="res://addons/sprites/Icon_ArrowDown.png" id="3_v7s3g"]
 
 [node name="Drop Zone" type="Area2D"]
 script = ExtResource("1_appxc")
@@ -10,6 +12,18 @@ color = Color(0.5, 0.5, 0.245, 1)
 polygon = PackedVector2Array(-65, -79, -64, -46, 33, -47, 33, -83)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="UPArrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-17, -64)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_u7yuo")
+
+[node name="DOWNArrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-17, -64)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_v7s3g")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

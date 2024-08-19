@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=14 format=4 uid="uid://bdkoetuso5mtb"]
 
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
 [ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
 [ext_resource type="PackedScene" uid="uid://bek31hv4snpor" path="res://addons/scenes/drop_zone.tscn" id="7_mkw7u"]
 [ext_resource type="PackedScene" uid="uid://cteq0wga6usqa" path="res://addons/scenes/pause.tscn" id="8_r5jiq"]
+[ext_resource type="AudioStream" uid="uid://ys1rii27fanc" path="res://addons/sounds/transfer.wav" id="9_pg2o7"]
+[ext_resource type="PackedScene" uid="uid://nqigkltiytwg" path="res://addons/scenes/level_complete.tscn" id="10_corpq"]
+[ext_resource type="PackedScene" uid="uid://ckc15lcgy8ow6" path="res://addons/scenes/extraction_zone.tscn" id="11_4q7ln"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arcya"]
 texture = ExtResource("2_22x47")
@@ -562,6 +565,15 @@ position = Vector2(-60, 2)
 
 [node name="Pause" parent="." instance=ExtResource("8_r5jiq")]
 visible = false
+
+[node name="TransferSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_pg2o7")
+
+[node name="LevelComplete" parent="." instance=ExtResource("10_corpq")]
+visible = false
+
+[node name="StaticBody2D" parent="." instance=ExtResource("11_4q7ln")]
+position = Vector2(141, -230)
 
 [connection signal="player_in_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_in_drop_zone"]
 [connection signal="player_left_drop_zone" from="Drop Zone" to="." method="_on_drop_zone_player_left_drop_zone"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnwqct5hrjmjq"]
+[gd_scene load_steps=3 format=3 uid="uid://cnwqct5hrjmjq"]
 
 [ext_resource type="Script" path="res://addons/scripts/pickup.gd" id="1_8iwsn"]
+[ext_resource type="AudioStream" uid="uid://cko46h0khaoy0" path="res://addons/sounds/pickup.wav" id="2_axs7f"]
 
 [node name="Pickup" type="Area2D"]
 script = ExtResource("1_8iwsn")
@@ -11,4 +12,8 @@ polygon = PackedVector2Array(-4, -5, 0, -17, 4, -6, 21, -10, 6, 3, 13, 12, 0, 5,
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
+[node name="PickupSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_axs7f")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="PickupSFX" to="." method="_on_pickup_sfx_finished"]
