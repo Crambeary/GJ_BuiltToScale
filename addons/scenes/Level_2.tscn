@@ -507,6 +507,12 @@ script = ExtResource("1_uygi1")
 minimum_collection_extraction = 4
 next_level = ExtResource("2_crcev")
 
+[node name="Background" type="Polygon2D" parent="."]
+z_index = -2
+position = Vector2(0, 1)
+color = Color(0.404683, 0.403867, 0.316334, 1)
+polygon = PackedVector2Array(-1868, -1391, 2551, -1499, 2528, 1659, -1875, 1219)
+
 [node name="Player" parent="." instance=ExtResource("2_is8ho")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -528,6 +534,8 @@ polygon = PackedVector2Array(-47, -512, -42, -389, -236, -392, -231, 87, -24, 80
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle"]
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle"]
+
 [node name="Obstacle2" type="StaticBody2D" parent="Walls"]
 script = ExtResource("4_co0vp")
 
@@ -536,6 +544,8 @@ position = Vector2(0, -1)
 polygon = PackedVector2Array(62, -572, 62, -398, 309, -410, 322, 94, 126, 82, 127, 203, 600, 189, 591, 115, 418, 144, 382, -497, 152, -494, 174, -597)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle2"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle2"]
 
 [node name="Obstacle3" type="StaticBody2D" parent="Walls"]
 script = ExtResource("4_co0vp")
@@ -546,6 +556,8 @@ polygon = PackedVector2Array(-569, -682, 826, -705, 838, 302, -539, 329, -637, 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle3"]
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle3"]
+
 [node name="Obstacle4" type="StaticBody2D" parent="Walls"]
 script = ExtResource("4_co0vp")
 
@@ -554,6 +566,8 @@ position = Vector2(0, -1)
 polygon = PackedVector2Array(560, -359, 576, 18, 685, 18, 682, 191, 780, 191, 772, -81, 644, -81, 609, -603, 407, -596, 404, -518, 559, -527)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle4"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle4"]
 
 [node name="GoalBlock" parent="." instance=ExtResource("5_a82n0")]
 position = Vector2(-28, -180)
@@ -609,6 +623,9 @@ visible = false
 
 [node name="ExtractionZone" parent="." instance=ExtResource("11_rmu4s")]
 position = Vector2(169, -231)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.548963, 0.548963, 0.548963, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="player_in_drop_zone" from="drop zones/Drop Zone" to="." method="_on_drop_zone_player_in_drop_zone"]

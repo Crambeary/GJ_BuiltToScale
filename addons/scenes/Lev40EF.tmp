@@ -1,20 +1,21 @@
-[gd_scene load_steps=15 format=4 uid="uid://boa1vtcthir4x"]
+[gd_scene load_steps=16 format=4 uid="uid://bdkoetuso5mtb"]
 
-[ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_8lmd7"]
-[ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="2_rvdy7"]
-[ext_resource type="PackedScene" uid="uid://0gao601pwyu5" path="res://addons/scenes/end_game.tscn" id="2_x1kqv"]
-[ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="3_8h4gc"]
-[ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="4_aw0ye"]
-[ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_gfqwx"]
-[ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="6_jylbp"]
-[ext_resource type="PackedScene" uid="uid://bek31hv4snpor" path="res://addons/scenes/drop_zone.tscn" id="7_12ni7"]
-[ext_resource type="PackedScene" uid="uid://cteq0wga6usqa" path="res://addons/scenes/pause.tscn" id="8_da1qo"]
-[ext_resource type="AudioStream" uid="uid://ys1rii27fanc" path="res://addons/sounds/transfer.wav" id="9_uhc4b"]
-[ext_resource type="PackedScene" uid="uid://nqigkltiytwg" path="res://addons/scenes/level_complete.tscn" id="10_cc6op"]
-[ext_resource type="PackedScene" uid="uid://ckc15lcgy8ow6" path="res://addons/scenes/extraction_zone.tscn" id="11_13k2o"]
+[ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
+[ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
+[ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="2_22x47"]
+[ext_resource type="PackedScene" uid="uid://dla32rlus6lni" path="res://addons/scenes/Level_2.tscn" id="2_q81tv"]
+[ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="3_djpq1"]
+[ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="4_70d32"]
+[ext_resource type="Texture2D" uid="uid://coenfyoahorm0" path="res://addons/sprites/2d_lights_and_shadows_neutral_point_light.webp" id="4_oqjde"]
+[ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
+[ext_resource type="PackedScene" uid="uid://bek31hv4snpor" path="res://addons/scenes/drop_zone.tscn" id="7_mkw7u"]
+[ext_resource type="PackedScene" uid="uid://cteq0wga6usqa" path="res://addons/scenes/pause.tscn" id="8_r5jiq"]
+[ext_resource type="AudioStream" uid="uid://ys1rii27fanc" path="res://addons/sounds/transfer.wav" id="9_pg2o7"]
+[ext_resource type="PackedScene" uid="uid://nqigkltiytwg" path="res://addons/scenes/level_complete.tscn" id="10_corpq"]
+[ext_resource type="PackedScene" uid="uid://ckc15lcgy8ow6" path="res://addons/scenes/extraction_zone.tscn" id="11_4q7ln"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arcya"]
-texture = ExtResource("3_8h4gc")
+texture = ExtResource("2_22x47")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -503,21 +504,21 @@ terrain_set_0/terrain_1/color = Color(0.1936, 0.44, 0.320907, 1)
 sources/0 = SubResource("TileSetAtlasSource_arcya")
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_8lmd7")
-minimum_collection_extraction = 5
-next_level = ExtResource("2_x1kqv")
+script = ExtResource("1_o1a8x")
+next_level = ExtResource("2_q81tv")
 
-[node name="Background" type="Polygon2D" parent="."]
-z_index = -2
-position = Vector2(0, 1)
-color = Color(0.404683, 0.403867, 0.316334, 1)
-polygon = PackedVector2Array(-1868, -1391, 2551, -1499, 2528, 1659, -1875, 1219)
-
-[node name="Player" parent="." instance=ExtResource("2_rvdy7")]
+[node name="Player" parent="." instance=ExtResource("1_jchem")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+position = Vector2(-1, 0)
+shadow_enabled = true
+shadow_color = Color(0.112459, 0.116766, 0.108146, 0)
+texture = ExtResource("4_oqjde")
+texture_scale = 1.9
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
@@ -527,195 +528,19 @@ tile_set = SubResource("TileSet_aop3n")
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="Obstacle" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
+script = ExtResource("3_djpq1")
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle"]
-polygon = PackedVector2Array(-35, 69, 205, 73, 209, 124, -252, 124, -254, 65)
+polygon = PackedVector2Array(-136, -63, -140, 6, 10, 82, 171, 15, 352, -62, 372, 33, 246, 159, -77, 160, -69.5092, 347.271, 339, 343, 452, 133, 724, -101, 757, -79, 627.756, 142.831, 891, 161, 911, -208, 982, -225, 971, 250, 482, 393, -372, 391, -366, 160, -363, -197, -359, -412, -203, -714, 973, -712, 1112, -711, 972, -188, 909, -159, 975, -658, -152.983, -611.965, -53, -408, 340.137, -396.644, 334, -532, 493, -530, 489.292, -443.136, 860, -421, 864, -357, 486, -366, 416, -334, -131, -312)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle"]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle"]
 
-[node name="Obstacle2" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle2"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(379, -375, 381, 5, 447, 5, 439, -392)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle2"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle2"]
-
-[node name="Obstacle3" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle3"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-208, -449, 224, -446, 228, -521, -223, -519)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle3"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle3"]
-
-[node name="Obstacle4" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle4"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-371, -413, -371, -15, -331, -15, -318, -413)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle4"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle4"]
-
-[node name="Obstacle5" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle5"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-786, -817, 722, -825, 728, 285, -769, 276, -848, 364, 847, 362, 830, -902, -882, -902, -850, 364, -769, 277)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle5"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle5"]
-
-[node name="Obstacle6" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle6"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-314, -491, -304, -587, -425, -489)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle6"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle6"]
-
-[node name="Obstacle7" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle7"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(307, -561, 301, -432, 454, -430)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle7"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle7"]
-
-[node name="Obstacle8" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle8"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(298, 41, 407, 55, 296, 162)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle8"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle8"]
-
-[node name="Obstacle9" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle9"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-314, 26, -435, 24, -338, 134)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle9"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle9"]
-
-[node name="Obstacle10" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle10"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-463, -412, -539, -413, -544, -255, -697, -253, -695, -181, -544, -181, -537, -34, -482, -34)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle10"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle10"]
-
-[node name="Obstacle11" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle11"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-19, -800, -21, -640, -167, -638, -172, -581, 173, -581, 166, -665, 30, -649, 24, -806)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle11"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle11"]
-
-[node name="Obstacle12" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle12"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(532, -376, 534, 2, 590, 2, 596, -172, 685, -172, 671, -245, 587, -245, 596, -378)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle12"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle12"]
-
-[node name="Obstacle13" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle13"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-248, 164, 207, 174, 205, 217, 26, 217, 24, 264, -53, 260, -57, 211, -244, 211)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle13"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle13"]
-
-[node name="Obstacle14" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle14"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-612, -531, -444, -710, -642, -708)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle14"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle14"]
-
-[node name="Obstacle15" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle15"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(392, -710, 554, -572, 587, -748)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle15"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle15"]
-
-[node name="Obstacle16" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle16"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(587, 202, 547, 70, 409, 208)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle16"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle16"]
-
-[node name="Obstacle17" type="StaticBody2D" parent="Walls"]
-script = ExtResource("4_aw0ye")
-
-[node name="Polygon2D" type="Polygon2D" parent="Walls/Obstacle17"]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-633, 198, -578, 36, -423, 209)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle17"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle17"]
-
-[node name="GoalBlock" parent="." instance=ExtResource("5_gfqwx")]
+[node name="GoalBlock" parent="." instance=ExtResource("5_8tecf")]
 position = Vector2(-28, -180)
 
-[node name="GoalBlock2" parent="." instance=ExtResource("5_gfqwx")]
+[node name="GoalBlock2" parent="." instance=ExtResource("5_8tecf")]
 position = Vector2(-28, -180)
 scale = Vector2(3.5, 3.5)
 
@@ -725,52 +550,44 @@ color = Color(0.62, 0.55056, 0.5208, 0.282353)
 
 [node name="Pickups" type="Node2D" parent="."]
 
-[node name="Pickup" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(-2, 146)
+[node name="Pickup" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(397, -178)
 
-[node name="Pickup2" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(330, 80)
+[node name="Pickup2" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(503, -407)
 
-[node name="Pickup3" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(-55, -685)
+[node name="Pickup3" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(80, 254)
 
-[node name="Pickup4" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(-674, -221)
+[node name="Pickup4" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(183, -473)
 
-[node name="Pickup5" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(519, -678)
-
-[node name="Pickup6" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(0, -463)
-
-[node name="Pickup7" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(750, 117)
-
-[node name="Pickup8" parent="Pickups" instance=ExtResource("6_jylbp")]
-position = Vector2(-600, 176)
+[node name="Pickup5" parent="Pickups" instance=ExtResource("4_70d32")]
+position = Vector2(732, 68)
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="drop zones" type="Node2D" parent="."]
 
-[node name="Drop Zone" parent="drop zones" groups=["up"] instance=ExtResource("7_12ni7")]
+[node name="Drop Zone" parent="drop zones" groups=["up"] instance=ExtResource("7_mkw7u")]
 z_index = -1
 position = Vector2(71, -2)
 
-[node name="Drop Zone2" parent="drop zones" groups=["down"] instance=ExtResource("7_12ni7")]
+[node name="Drop Zone2" parent="drop zones" groups=["down"] instance=ExtResource("7_mkw7u")]
 z_index = -1
 position = Vector2(-60, 2)
 
-[node name="Pause" parent="." instance=ExtResource("8_da1qo")]
+[node name="Pause" parent="." instance=ExtResource("8_r5jiq")]
 visible = false
 
 [node name="TransferSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_uhc4b")
+stream = ExtResource("9_pg2o7")
 
-[node name="LevelComplete" parent="." instance=ExtResource("10_cc6op")]
+[node name="LevelComplete" parent="." instance=ExtResource("10_corpq")]
 visible = false
 
-[node name="ExtractionZone" parent="." instance=ExtResource("11_13k2o")]
+[node name="ExtractionZone" parent="." instance=ExtResource("11_4q7ln")]
 position = Vector2(169, -231)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

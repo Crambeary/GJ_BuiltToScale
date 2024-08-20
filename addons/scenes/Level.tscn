@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=16 format=4 uid="uid://bdkoetuso5mtb"]
 
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
 [ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
@@ -502,9 +502,18 @@ terrain_set_0/terrain_1/name = "Upper"
 terrain_set_0/terrain_1/color = Color(0.1936, 0.44, 0.320907, 1)
 sources/0 = SubResource("TileSetAtlasSource_arcya")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wj3ft"]
+polygon = PackedVector2Array(30, 87, 244, 1, 262, 77, 126, 136, -9, 131)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o1a8x")
 next_level = ExtResource("2_q81tv")
+
+[node name="Background" type="Polygon2D" parent="."]
+z_index = -2
+position = Vector2(0, 1)
+color = Color(0.404683, 0.403867, 0.316334, 1)
+polygon = PackedVector2Array(-1868, -1391, 2551, -1499, 2528, 1659, -1875, 1219)
 
 [node name="Player" parent="." instance=ExtResource("1_jchem")]
 
@@ -526,6 +535,9 @@ script = ExtResource("3_djpq1")
 polygon = PackedVector2Array(-136, -63, -140, 6, 10, 82, 171, 15, 352, -62, 372, 33, 246, 159, -77, 160, -69.5092, 347.271, 339, 343, 452, 133, 724, -101, 757, -79, 627.756, 142.831, 891, 161, 911, -208, 982, -225, 971, 250, 482, 393, -372, 391, -366, 160, -363, -197, -359, -412, -203, -714, 973, -712, 1112, -711, 972, -188, 909, -159, 975, -658, -152.983, -611.965, -53, -408, 340.137, -396.644, 334, -532, 493, -530, 489.292, -443.136, 860, -421, 864, -357, 486, -366, 416, -334, -131, -312)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Obstacle"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Obstacle"]
+occluder = SubResource("OccluderPolygon2D_wj3ft")
 
 [node name="GoalBlock" parent="." instance=ExtResource("5_8tecf")]
 position = Vector2(-28, -180)
@@ -579,6 +591,9 @@ visible = false
 
 [node name="ExtractionZone" parent="." instance=ExtResource("11_4q7ln")]
 position = Vector2(169, -231)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.548963, 0.548963, 0.548963, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="player_in_drop_zone" from="drop zones/Drop Zone" to="." method="_on_drop_zone_player_in_drop_zone"]

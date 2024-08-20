@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dthpn1kee4uab"]
+[gd_scene load_steps=6 format=3 uid="uid://dthpn1kee4uab"]
 
 [ext_resource type="Script" path="res://addons/scripts/character_body_2d.gd" id="1_wxxny"]
+[ext_resource type="Texture2D" uid="uid://coenfyoahorm0" path="res://addons/sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_2xjg7"]
 
 [sub_resource type="Animation" id="Animation_geb3s"]
 length = 0.001
@@ -108,3 +109,9 @@ position = Vector2(12, -6)
 color = Color(0.1624, 0.56, 0.1624, 1)
 offset = Vector2(0, -4)
 polygon = PackedVector2Array(-1, 4, -1, -5, 1, -5, 1, 4)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1, 0)
+shadow_enabled = true
+texture = ExtResource("2_2xjg7")
+texture_scale = 1.9
