@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://nqigkltiytwg"]
+[gd_scene load_steps=7 format=3 uid="uid://nqigkltiytwg"]
 
 [ext_resource type="Script" path="res://addons/scripts/level_complete.gd" id="1_3kgvo"]
 [ext_resource type="Texture2D" uid="uid://d0p0us7h0dnm6" path="res://addons/sprites/Icon_Star.png" id="2_4aild"]
 [ext_resource type="Texture2D" uid="uid://cb3ph3lk5dipd" path="res://addons/sprites/Icon_Star_Empty.png" id="3_357lc"]
+[ext_resource type="AudioStream" uid="uid://bw32kawp3ku45" path="res://addons/sounds/select.wav" id="4_7lmv6"]
+[ext_resource type="AudioStream" uid="uid://bt7b1p486r2tw" path="res://addons/sounds/hover.wav" id="5_i10w5"]
+[ext_resource type="AudioStream" uid="uid://vjvt0pei2r7j" path="res://addons/sounds/complete.wav" id="6_fjmqu"]
 
 [node name="LevelComplete" type="CanvasLayer"]
 process_mode = 3
@@ -109,6 +112,19 @@ text = "Restart Level"
 layout_mode = 2
 text = "Exit Game"
 
+[node name="ClickSFX" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("4_7lmv6")
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("5_i10w5")
+
+[node name="CompleteSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fjmqu")
+
 [connection signal="button_down" from="Control/VBoxContainer/NextLevel" to="." method="_on_next_level_button_down"]
+[connection signal="mouse_entered" from="Control/VBoxContainer/NextLevel" to="." method="_on_next_level_mouse_entered"]
+[connection signal="mouse_entered" from="Control/VBoxContainer/RestartLevel" to="." method="_on_restart_level_mouse_entered"]
 [connection signal="pressed" from="Control/VBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="mouse_entered" from="Control/VBoxContainer/Exit Game" to="." method="_on_exit_game_mouse_entered"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="finished" from="Control/ClickSFX" to="." method="_on_click_sfx_finished"]

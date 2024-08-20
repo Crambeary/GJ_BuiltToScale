@@ -57,6 +57,7 @@ func level_complete():
 		total_matter_in_level, 
 		collected_matter)
 	level_complete_overlay.show_stars(score)
+	level_complete_overlay.play_complete_zinger()
 	get_tree().paused = true
 
 func _on_pickup_pickup() -> void:

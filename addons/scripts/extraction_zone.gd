@@ -6,6 +6,7 @@ extends Area2D
 @onready var extraction_timer: Timer = $ExtractionTimer
 @onready var material_count_label: Label = $MaterialCountLabel
 @onready var exit_transition: AnimationPlayer = $ExitTransition
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 signal extraction_timer_end
 
@@ -47,6 +48,7 @@ func _on_body_entered(body: Node2D) -> void:
 		extraction_timer.start()
 		material_count_label.visible = false
 		exit_transition.play("scale_floor")
+		audio_stream_player.play()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -56,6 +58,7 @@ func _on_body_exited(body: Node2D) -> void:
 		extraction_timer.stop()
 		material_count_label.visible = true
 		exit_transition.stop()
+		audio_stream_player.stop()
 
 
 func _on_extraction_timer_timeout() -> void:
