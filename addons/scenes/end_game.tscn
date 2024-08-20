@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://coosbtv7tqexb"]
+[gd_scene load_steps=5 format=3 uid="uid://0gao601pwyu5"]
 
-[ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_68qa7"]
-[ext_resource type="AudioStream" uid="uid://bw32kawp3ku45" path="res://addons/sounds/select.wav" id="2_0qsf8"]
-[ext_resource type="PackedScene" uid="uid://boa1vtcthir4x" path="res://addons/scenes/Level_3.tscn" id="2_isphm"]
-[ext_resource type="AudioStream" uid="uid://bt7b1p486r2tw" path="res://addons/sounds/hover.wav" id="3_n3tnk"]
+[ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_bpbqy"]
+[ext_resource type="PackedScene" uid="uid://coosbtv7tqexb" path="res://addons/scenes/main_menu.tscn" id="2_3mm7w"]
+[ext_resource type="AudioStream" uid="uid://bw32kawp3ku45" path="res://addons/sounds/select.wav" id="3_clhwi"]
+[ext_resource type="AudioStream" uid="uid://bt7b1p486r2tw" path="res://addons/sounds/hover.wav" id="4_kxk44"]
 
-[node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_68qa7")
-level_to_load = ExtResource("2_isphm")
+[node name="EndGame" type="CanvasLayer"]
+script = ExtResource("1_bpbqy")
+level_to_load = ExtResource("2_3mm7w")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -46,15 +46,24 @@ theme_override_font_sizes/font_size = 42
 text = "Max Matter"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Control/VBoxContainer"]
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
-text = "START"
+text = "Thank you for playing!
+Please leave a comment about your experience.
+I really appreciate it!
+-Marc"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "MAIN MENU"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="Control/VBoxContainer/Button"]
-stream = ExtResource("2_0qsf8")
+stream = ExtResource("3_clhwi")
 
 [node name="HoverSFX" type="AudioStreamPlayer" parent="Control/VBoxContainer/Button"]
-stream = ExtResource("3_n3tnk")
+stream = ExtResource("4_kxk44")
 
 [connection signal="button_down" from="Control/VBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="mouse_entered" from="Control/VBoxContainer/Button" to="." method="_on_button_mouse_entered"]

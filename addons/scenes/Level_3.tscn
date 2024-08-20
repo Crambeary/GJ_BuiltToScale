@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://boa1vtcthir4x"]
+[gd_scene load_steps=15 format=4 uid="uid://boa1vtcthir4x"]
 
 [ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_8lmd7"]
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="2_rvdy7"]
+[ext_resource type="PackedScene" uid="uid://0gao601pwyu5" path="res://addons/scenes/end_game.tscn" id="2_x1kqv"]
 [ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="3_8h4gc"]
 [ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="4_aw0ye"]
 [ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_gfqwx"]
@@ -503,6 +504,7 @@ sources/0 = SubResource("TileSetAtlasSource_arcya")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8lmd7")
+next_level = ExtResource("2_x1kqv")
 
 [node name="Player" parent="." instance=ExtResource("2_rvdy7")]
 
@@ -729,6 +731,7 @@ position = Vector2(169, -231)
 [connection signal="player_left_drop_zone" from="drop zones/Drop Zone" to="." method="_on_drop_zone_player_left_drop_zone"]
 [connection signal="player_in_drop_zone" from="drop zones/Drop Zone2" to="." method="_on_drop_zone_player_in_drop_zone"]
 [connection signal="player_left_drop_zone" from="drop zones/Drop Zone2" to="." method="_on_drop_zone_player_left_drop_zone"]
+[connection signal="next_level" from="LevelComplete" to="." method="_on_level_complete_next_level"]
 [connection signal="extraction_timer_end" from="ExtractionZone" to="." method="_on_extraction_zone_extraction_timer_end"]
 
 [editable path="GoalBlock2"]
