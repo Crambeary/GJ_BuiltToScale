@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://addons/scripts/main_menu.gd" id="1_68qa7"]
 [ext_resource type="AudioStream" uid="uid://bw32kawp3ku45" path="res://addons/sounds/select.wav" id="2_0qsf8"]
-[ext_resource type="PackedScene" uid="uid://boa1vtcthir4x" path="res://addons/scenes/Level_3.tscn" id="2_isphm"]
+[ext_resource type="PackedScene" uid="uid://bdkoetuso5mtb" path="res://addons/scenes/Level.tscn" id="2_vusxn"]
 [ext_resource type="AudioStream" uid="uid://bt7b1p486r2tw" path="res://addons/sounds/hover.wav" id="3_n3tnk"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_68qa7")
-level_to_load = ExtResource("2_isphm")
+level_to_load = ExtResource("2_vusxn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
