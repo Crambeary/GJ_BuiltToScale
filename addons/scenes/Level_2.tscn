@@ -611,6 +611,7 @@ position = Vector2(169, -231)
 [connection signal="player_left_drop_zone" from="drop zones/Drop Zone" to="." method="_on_drop_zone_player_left_drop_zone"]
 [connection signal="player_in_drop_zone" from="drop zones/Drop Zone2" to="." method="_on_drop_zone_player_in_drop_zone"]
 [connection signal="player_left_drop_zone" from="drop zones/Drop Zone2" to="." method="_on_drop_zone_player_left_drop_zone"]
+[connection signal="next_level" from="LevelComplete" to="." method="_on_level_complete_next_level"]
 [connection signal="extraction_timer_end" from="ExtractionZone" to="." method="_on_extraction_zone_extraction_timer_end"]
 
 [editable path="GoalBlock2"]
