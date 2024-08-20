@@ -19,7 +19,9 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		
-		if body.get_material_count() < body.get_pickup_limit():
+		if (body.get_material_count() < 
+			body.get_pickup_limit() &&
+			visible == true):
 			pickup.emit()
 			visible = false
 			pickup_sfx.play()

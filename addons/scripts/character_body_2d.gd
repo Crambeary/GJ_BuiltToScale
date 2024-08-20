@@ -25,6 +25,8 @@ func get_material_count():
 func submit_material():
 	if markers_held >= 1:
 		markers_held -= 1
+	#animation_player.seek(0.0, true)
+	start_transfer_ui()
 
 func _ready() -> void:
 	collision_polygon_2d.polygon = polygon_2d.polygon
@@ -62,6 +64,7 @@ func _process(delta: float) -> void:
 			pass
 
 func start_transfer_ui():
+	animation_player.seek(0.0)
 	animation_player.play(&"Transfer")
 	
 func stop_transfer_ui():

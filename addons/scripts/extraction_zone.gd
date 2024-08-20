@@ -10,7 +10,7 @@ signal extraction_timer_end
 
 
 var collected_material = 0
-@export var minimum_goal_material = 3
+var minimum_goal_material = 0
 
 
 func remove_cross():
@@ -22,7 +22,10 @@ func show_cross():
 func set_collected_material(value):
 	collected_material = value
 	_update_score_label()
-
+	
+func set_minimum_goal_material(value):
+	minimum_goal_material = value
+	_update_score_label()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
