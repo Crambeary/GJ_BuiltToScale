@@ -14,10 +14,12 @@ extends Node2D
 var drop_area := ""
 var collected_matter := 0
 @export var minimum_collection_extraction := 3
+var total_matter_in_level: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var pickup_nodes = pickups.get_children()
+	total_matter_in_level = pickup_nodes.size()
 	for node in pickup_nodes:
 		node.connect("pickup", _on_pickup_pickup)
 	for zone in drop_zones.get_children():
@@ -47,6 +49,11 @@ func check_goal_collection():
 
 func level_complete():
 	level_complete_overlay.visible = true
+	var score = level_complete_overlay.calculate_score(
+		minimum_collection_extraction, 
+		total_matter_in_level, 
+		collected_matter)
+	level_complete_overlay.show_stars(score)
 	get_tree().paused = true
 
 func _on_pickup_pickup() -> void:
@@ -63,12 +70,18 @@ func drop_material_timed() -> void:
 	transfer_sfx.seek(0)
 	transfer_sfx.play()
 	timer.start()
+	
+func grow_box():
+	var box_step := 2.5 / total_matter_in_level
+	print(total_matter_in_level)
+	print(box_step)
+	goal_block.scale = goal_block.scale + Vector2(box_step, box_step)
 
 func submit_material():
 	player.submit_material()
 	collected_matter += 1
 	extraction_zone.set_collected_material(collected_matter)
-	goal_block.scale = goal_block.scale + Vector2(0.5, 0.5)
+	grow_box()
 	if drop_area == "up":
 		obstacle.scale += Vector2(0.1, 0.1)
 	elif drop_area == "down":
