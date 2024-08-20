@@ -5,6 +5,7 @@ extends Area2D
 @onready var cross: Sprite2D = $Cross
 @onready var extraction_timer: Timer = $ExtractionTimer
 @onready var material_count_label: Label = $MaterialCountLabel
+@onready var exit_transition: AnimationPlayer = $ExitTransition
 
 signal extraction_timer_end
 
@@ -45,6 +46,7 @@ func _on_body_entered(body: Node2D) -> void:
 		sprite_2d.visible = false
 		extraction_timer.start()
 		material_count_label.visible = false
+		exit_transition.play("scale_floor")
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -53,6 +55,7 @@ func _on_body_exited(body: Node2D) -> void:
 		sprite_2d.visible = true
 		extraction_timer.stop()
 		material_count_label.visible = true
+		exit_transition.stop()
 
 
 func _on_extraction_timer_timeout() -> void:

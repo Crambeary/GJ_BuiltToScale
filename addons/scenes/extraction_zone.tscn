@@ -1,8 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckc15lcgy8ow6"]
+[gd_scene load_steps=7 format=3 uid="uid://ckc15lcgy8ow6"]
 
 [ext_resource type="Script" path="res://addons/scripts/extraction_zone.gd" id="1_7o6ge"]
 [ext_resource type="Texture2D" uid="uid://c4ys4h5o4s8on" path="res://addons/sprites/Icon_Exit.png" id="2_41wau"]
 [ext_resource type="Texture2D" uid="uid://dgvcxeiqx3on2" path="res://addons/sprites/Icon_X.png" id="3_qui4t"]
+
+[sub_resource type="Animation" id="Animation_b5w47"]
+resource_name = "scale_floor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y6bg1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u63y0"]
+_data = {
+"RESET": SubResource("Animation_y6bg1"),
+"scale_floor": SubResource("Animation_b5w47")
+}
 
 [node name="ExtractionZone" type="Area2D"]
 z_index = -1
@@ -10,6 +46,11 @@ script = ExtResource("1_7o6ge")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.66, 0.932, 1, 1)
+polygon = PackedVector2Array(-58, -34, -58, 31, 59, 31, 59, -34)
+
+[node name="Transition" type="Polygon2D" parent="."]
+scale = Vector2(1, 1e-05)
+color = Color(0, 0.7565, 0.89, 1)
 polygon = PackedVector2Array(-58, -34, -58, 31, 59, 31, 59, -34)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -34,6 +75,11 @@ scale = Vector2(0.135, 0.135)
 theme_override_font_sizes/font_size = 120
 text = "0/3"
 horizontal_alignment = 1
+
+[node name="ExitTransition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u63y0")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
