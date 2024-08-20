@@ -504,6 +504,7 @@ sources/0 = SubResource("TileSetAtlasSource_arcya")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uygi1")
+minimum_collection_extraction = 4
 next_level = ExtResource("2_crcev")
 
 [node name="Player" parent="." instance=ExtResource("2_is8ho")]
@@ -581,6 +582,9 @@ position = Vector2(359, -179)
 
 [node name="Pickup5" parent="Pickups" instance=ExtResource("6_l06i0")]
 position = Vector2(732, 68)
+
+[node name="Pickup6" parent="Pickups" instance=ExtResource("6_l06i0")]
+position = Vector2(-309, -420)
 
 [node name="Timer" type="Timer" parent="."]
 
