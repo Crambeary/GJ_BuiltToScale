@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://bdkoetuso5mtb"]
+[gd_scene load_steps=15 format=4 uid="uid://bdkoetuso5mtb"]
 
 [ext_resource type="PackedScene" uid="uid://dthpn1kee4uab" path="res://addons/scenes/character_body_2d.tscn" id="1_jchem"]
 [ext_resource type="Script" path="res://addons/scripts/level.gd" id="1_o1a8x"]
 [ext_resource type="Texture2D" uid="uid://by304ifh2pyay" path="res://addons/sprites/tileset - simplified.png" id="2_22x47"]
+[ext_resource type="PackedScene" uid="uid://dla32rlus6lni" path="res://addons/scenes/Level_2.tscn" id="2_q81tv"]
 [ext_resource type="Script" path="res://addons/scripts/obstacle.gd" id="3_djpq1"]
 [ext_resource type="PackedScene" uid="uid://cnwqct5hrjmjq" path="res://addons/scenes/pickup.tscn" id="4_70d32"]
 [ext_resource type="PackedScene" uid="uid://bj4h4sh74baim" path="res://addons/scenes/goal_block.tscn" id="5_8tecf"]
@@ -503,6 +504,7 @@ sources/0 = SubResource("TileSetAtlasSource_arcya")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o1a8x")
+next_level = ExtResource("2_q81tv")
 
 [node name="Player" parent="." instance=ExtResource("1_jchem")]
 

@@ -14,11 +14,14 @@ extends Node2D
 var drop_area := ""
 var collected_matter := 0
 @export var minimum_collection_extraction := 3
+@export var pickup_limit := 1
+@export var next_level: PackedScene
 var total_matter_in_level: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var pickup_nodes = pickups.get_children()
+	player.set_pickup_limit(pickup_limit)
 	total_matter_in_level = pickup_nodes.size()
 	for node in pickup_nodes:
 		node.connect("pickup", _on_pickup_pickup)
@@ -117,4 +120,4 @@ func _on_extraction_zone_extraction_timer_end() -> void:
 
 
 func _on_level_complete_next_level() -> void:
-	get_tree().change_scene_to_file("res://addons/scenes/Level_2.tscn")
+	get_tree().change_scene_to_packed(next_level)
